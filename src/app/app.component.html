@@ -1,0 +1,48 @@
+<div class="app-container d-flex align-items-center justify-content-center flex-column">
+
+  <h3>Todo App</h3>
+  <div class="d-flex align-items-center mb-3">
+    <div class="form-group mr-3 mb-0">
+      <input ng-model="yourTask" type="text" class="form-control" id="formGroupExampleInput"
+        placeholder="Enter a task here" [(ngModel)]="inputData" />
+    </div>
+
+    <button type="button" class="btn btn-primary mr-3" (click)="saveTask(inputData)">
+      Save
+    </button>
+
+    <button type="button" class="btn btn-warning" (click)="clear()">
+      Clear
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Todo item</th>
+          <th>status</th>
+          <th>Actions</th>
+        </tr>
+      <tbody>
+
+        <tr *ngIf="task.length===0">Nothing</tr>
+
+        <tr *ngFor="let t of task ; let i = index "
+          [ngStyle]="{ 'color': t.status === 'Done' ? 'green' : 'black' ,  'font-weight': t.status === 'Done' ? 'bold' : 'normal' }">
+          <td>{{i}}</td>
+          <td>{{t.data}} </td>
+          <td>{{t.status}}</td>
+          <td class="p-2">
+            <button class="btn btn-danger " (click)="delete(i)">
+              Delete </button>
+            <button class="btn btn-success  ms-2" (click)="finished(t)">
+              Finished
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
